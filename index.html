@@ -76,7 +76,7 @@ main,footer{position:relative;z-index:1}
 /* hero */
 .hero{position:relative;padding-top:var(--nav)}
 .stage{position:relative;height:calc(100svh - var(--nav));min-height:620px;max-height:1000px;isolation:isolate}
-.name{position:absolute;left:0;right:0;top:4%;margin:0;font:500 clamp(64px,9.4vw,var(--t-4))/1 var(--f-head);letter-spacing:-.025em;z-index:2;pointer-events:none}
+.name{position:absolute;left:0;right:0;top:4%;margin:0;font:500 clamp(64px,min(9.4vw,calc(clamp(620px,100svh - var(--nav),1000px) * .138)),var(--t-4))/1 var(--f-head);letter-spacing:-.025em;z-index:2;pointer-events:none}
 .ln{display:block;overflow:hidden;padding-bottom:.08em}
 .ln>span{display:inline-block}
 .ch{display:inline-block}
@@ -1330,18 +1330,19 @@ main{padding-bottom:var(--s6)}
       scene.add(att);
 
       const solidDefs = [
-        [new THREE.IcosahedronGeometry(.3, 0), '#2f5cff', [-4.75, 2.2, -1.2]],
+        [new THREE.IcosahedronGeometry(.3, 0), '#2f5cff', [-4.75, 2.2, -1.2], -.92],
         [new THREE.TorusGeometry(.24, .09, 24, 72), '#ffbf1f', [3.7, -1.9, -.6]],
-        [new THREE.OctahedronGeometry(.28, 0), '#ff3e8a', [-4.05, -2.35, .2]],
+        [new THREE.OctahedronGeometry(.28, 0), '#ff3e8a', [-4.05, -2.35, .2], -.9],
         [new THREE.TorusKnotGeometry(.19, .065, 120, 14), '#00c4a7', [3.2, 2.3, -1.6]],
         [new THREE.DodecahedronGeometry(.26, 0), '#ff7a21', [.4, -3.0, -1.4]],
         [new THREE.TetrahedronGeometry(.26, 0), '#8b5cff', [1.5, 3.25, -2]],
         [new THREE.ConeGeometry(.2, .42, 5), '#2f5cff', [4.4, .4, -2.4]],
       ];
-      const solids = solidDefs.map(([g, c, p], i) => {
+      const solids = solidDefs.map(([g, c, p, edge], i) => {
         const m = new THREE.Mesh(g, new THREE.MeshStandardMaterial({color: lin(c), roughness: .28, metalness: .08, flatShading: i % 2 === 0}));
         m.position.set(p[0], p[1], p[2]);
         m.userData.base = p;
+        m.userData.edge = edge || 0;
         scene.add(m);
         return m;
       });
@@ -1394,6 +1395,7 @@ main{padding-bottom:var(--s6)}
           m.rotation.x = time * (.2 + i * .04) + prog * (2 + i);
           m.rotation.y = time * (.25 + i * .03) + prog * 3;
           m.position.y = b[1] + Math.sin(time * .6 + i) * .14 - (prog - .5) * (i % 2 ? 1.2 : -1.2);
+          if (m.userData.edge) m.position.x = m.userData.edge * Math.tan(camera.fov * Math.PI / 360) * (9 - b[2]) * camera.aspect;
         });
         accent.color.lerp(targetCol, .05);
         headMat.emissive.lerp(targetCol, .05);
