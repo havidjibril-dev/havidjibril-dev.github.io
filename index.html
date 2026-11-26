@@ -260,6 +260,19 @@ em.t{font-style:italic;font-family:var(--f-head);font-size:1.06em}
 .phone{position:relative;float:right;width:min(38%,240px);margin:var(--s1) calc(-1 * var(--s3)) var(--s4) var(--s4);padding:9px;border-radius:34px;background:var(--ink);box-shadow:0 13px 34px -13px rgba(23,19,46,.5);shape-outside:inset(0 round 34px);shape-margin:13px;rotate:4deg}
 .phone img{border-radius:26px;width:100%;height:auto}
 
+/* organisation logo + taped photo gallery */
+.org{display:block;width:clamp(116px,10vw,144px);height:auto;margin:0 0 var(--s3)}
+.gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s4);margin:var(--s2) 0 var(--s3);padding-inline:6px}
+.gallery .pp{position:relative;padding:7px;rotate:var(--r,0deg)}
+.gallery .pp img{display:block;aspect-ratio:4/3;object-fit:cover;border-radius:2px}
+.gallery .pp:nth-child(1){--r:-2.2deg}
+.gallery .pp:nth-child(2){--r:1.8deg;margin-top:var(--s3)}
+.gallery .pp:nth-child(3){--r:1.2deg;margin-top:calc(-1 * var(--s1))}
+.gallery .pp:nth-child(4){--r:-1.6deg;margin-top:var(--s2)}
+.gallery .pp:nth-child(2)::after{left:auto;right:-27px;top:9px;margin:0;rotate:40deg}
+.gallery .pp:nth-child(3)::after{left:-27px;top:9px;margin:0;rotate:-40deg}
+.gallery .pp:nth-child(4)::after{rotate:5deg}
+
 /* closing */
 .closing{background:var(--cobalt);color:#fff;padding-block:var(--s7) var(--s5);position:relative;z-index:1;overflow:visible;background-image:radial-gradient(circle at 85% 20%,rgba(255,191,31,.35),transparent 40%),radial-gradient(circle at 10% 90%,rgba(255,62,138,.35),transparent 45%)}
 .closing-grid{display:grid;grid-template-columns:minmax(0,1.618fr) minmax(0,1fr);gap:var(--s5);align-items:end}
@@ -280,7 +293,7 @@ em.t{font-style:italic;font-family:var(--f-head);font-size:1.06em}
 dialog.lb{border:0;padding:0;background:transparent;max-width:min(94vw,1100px);width:100%;max-height:92vh;overflow:visible;color:#fff}
 dialog.lb::backdrop{background:rgba(16,13,34,.78);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
 .lb-body{display:grid;place-items:center}
-.lb-body img{max-height:76vh;width:auto;max-width:100%;border-radius:6px;box-shadow:0 34px 89px rgba(0,0,0,.5);background:#fff}
+.lb-body img{max-height:min(76vh,calc(100vh - 205px));width:auto;max-width:100%;border-radius:6px;box-shadow:0 34px 89px rgba(0,0,0,.5);background:#fff}
 .lb-body .clip{position:static;width:min(560px,90vw);rotate:0deg;clip-path:none;padding:var(--s4)}
 .lb-body .clip strong{font-size:var(--t-1)}
 .lb-body .clip .go{font-size:var(--t-0)}
@@ -418,6 +431,7 @@ main{padding-bottom:var(--s6)}
   .s-clips:hover .clip:nth-child(1){translate:-3% -7%}
   .s-clips:hover .clip:nth-child(3){translate:3% 5%}
   .single:hover .pp{scale:1.025}
+  .gallery .pp:hover{scale:1.035;z-index:3}
 }
 
 @media (max-width:980px){
@@ -463,6 +477,11 @@ main{padding-bottom:var(--s6)}
   .cut.about-cut{width:46%;shape-margin:8px;margin-left:-6px}
   .phone{width:44%;shape-margin:8px;margin-right:0}
   .videos,.duo{grid-template-columns:minmax(0,1fr)}
+  .gallery{gap:var(--s3) var(--s2);padding-inline:2px}
+  .gallery .pp{padding:5px}
+  .gallery .pp::after{width:58px;height:15px;margin-left:-29px;top:-7px}
+  .gallery .pp:nth-child(2)::after{right:-18px;top:6px;margin:0}
+  .gallery .pp:nth-child(3)::after{left:-18px;top:6px;margin:0}
   .heat{font-size:11px;gap:3px}
   .heat .c{padding:8px 2px}
   .brow{grid-template-columns:5.5em minmax(0,1fr) 4.6em}
@@ -590,7 +609,7 @@ main{padding-bottom:var(--s6)}
       <p>Kompetisi pemodelan dan sains data, asistensi mengajar, dan laporan penelitian selama kuliah.</p>
       <div class="tally">
         <div><b class="num count" data-to="6">6</b>Sertifikat dan penghargaan akademik</div>
-        <div><b class="num count" data-to="6">6</b>Mata kuliah yang saya bantu sebagai asisten, tutor, atau <i>grader</i></div>
+        <div><b class="num count" data-to="7">7</b>Mata kuliah yang saya bantu sebagai asisten, tutor, atau <i>grader</i></div>
       </div>
     </div>
     <img class="op-cut" src="img/senyum.webp" width="653" height="1099" loading="lazy" decoding="async" alt="Jibril berjas hitam tersenyum dengan tangan bersilang">
@@ -685,7 +704,7 @@ main{padding-bottom:var(--s6)}
         <h3>Asisten dosen, tutor, dan <i>grader</i></h3>
         <p class="meta">Departemen Matematika FMIPA UGM dan Fakultas Teknik UGM, <span class="num">2025</span> sampai sekarang</p>
         <dl class="stats">
-          <div><dt>Mata kuliah</dt><dd class="num count" data-to="6">6</dd></div>
+          <div><dt>Mata kuliah</dt><dd class="num count" data-to="7">7</dd></div>
         </dl>
       </div>
       <div class="body">
@@ -697,6 +716,7 @@ main{padding-bottom:var(--s6)}
         </figure>
         <ul class="roles">
           <li>Asisten Praktikum Program Linear<small>Ganjil 2025/2026. Python, Google Sheets, LINGO</small></li>
+          <li><i>Grader</i> Persamaan Diferensial Elementer<small>Ganjil 2025/2026</small></li>
           <li>Asisten Praktikum Matematika Komputasi<small>Genap 2025/2026</small></li>
           <li><i>Grader</i> Pengantar Persamaan Diferensial Parsial A<small>Genap 2025/2026</small></li>
           <li>Tutor dan <i>grader</i> Kalkulus, Fakultas Teknik<small>Kelas G dan N, Ganjil 2026/2027</small></li>
@@ -937,7 +957,7 @@ main{padding-bottom:var(--s6)}
       <h2 id="h-kul" class="reveal">Pengalaman selama kuliah</h2>
       <p>Kepanitiaan dan organisasi tempat saya belajar memimpin tim dan mengelola banyak orang sekaligus.</p>
       <div class="tally">
-        <div><b class="num count" data-to="4">4</b>Organisasi dan program</div>
+        <div><b class="num count" data-to="5">5</b>Organisasi dan program</div>
         <div><b class="num"><span class="count" data-to="4000" data-sep="1">4.000</span>+</b>Peserta LMNas 35 yang alurnya ikut saya rancang</div>
       </div>
     </div>
@@ -963,6 +983,25 @@ main{padding-bottom:var(--s6)}
           <div class="kpi"><b><span class="count" data-to="4000" data-sep="1">4.000</span>+</b><span>Peserta LMNas 35, saat saya menjadi staf acara</span></div>
           <div class="kpi"><b><span class="count" data-to="300">300</span>+</b><span>Peserta Semnastika 16</span></div>
         </div>
+      </div>
+    </article>
+
+    <article class="entry">
+      <div class="head">
+        <img class="org" src="img/gik-logo.webp" width="520" height="251" loading="lazy" decoding="async" alt="Logo GIK UGM">
+        <h3>GIK Upgraders</h3>
+        <p class="meta"><i>Experience Manager</i> di Gelanggang Inovasi dan Kreativitas UGM, <span class="num">Agustus 2025</span> sampai <span class="num">Agustus 2026</span></p>
+      </div>
+      <div class="body">
+        <p class="lead">Saya ikut mengurus operasional acara di GIK UGM, di antaranya pembukaan <i>Talent Development Class</i> (TDC) dan Jogja Run’nShine 2025.</p>
+        <p>Tugas saya menyusun <i>rundown</i> dan petunjuk teknis yang menjadi acuan kerja tim, lalu berkoordinasi dengan divisi lain dan para <i>stakeholder</i> agar pelaksanaannya sesuai rencana.</p>
+        <p class="hint">Klik foto untuk memperbesar</p>
+        <figure class="gallery" data-lb-group>
+          <span class="pp" data-depth="1" data-lb tabindex="0" role="button"><img src="img/gik-jibril.webp" width="720" height="540" loading="lazy" decoding="async" alt="Jibril dengan kaus dan tanda pengenal Jogja Run’nShine 2025"></span>
+          <span class="pp" data-depth="2" data-lb tabindex="0" role="button"><img src="img/gik-tim.webp" width="720" height="540" loading="lazy" decoding="async" alt="Foto bersama tim Jogja Run’nShine 2025"></span>
+          <span class="pp" data-depth="1.5" data-lb tabindex="0" role="button"><img src="img/gik-gedung.webp" width="720" height="540" loading="lazy" decoding="async" alt="Foto bersama tim di depan gedung GIK UGM"></span>
+          <span class="pp" data-depth="2.5" data-lb tabindex="0" role="button"><img src="img/gik-banner.webp" width="720" height="540" loading="lazy" decoding="async" alt="Tim Jogja Run’nShine 2025 di depan banner acara"></span>
+        </figure>
       </div>
     </article>
 
@@ -1556,7 +1595,7 @@ main{padding-bottom:var(--s6)}
       gsap.from(el, {y: 18, autoAlpha: 0, duration: .6, ease: 'power3.out', scrollTrigger: {trigger: el, start: 'top 95%', once: true}});
     });
 
-    gsap.utils.toArray('.stack, .single').forEach((fig, n) => {
+    gsap.utils.toArray('.stack, .single, .gallery').forEach((fig, n) => {
       fig.querySelectorAll('.pp:not([hidden])').forEach((el, i) => {
         const d = parseFloat(el.dataset.depth || 1);
         const dir = (n + i) % 2 ? 1 : -1;
